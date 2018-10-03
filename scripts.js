@@ -83,7 +83,7 @@ var drawStackedGraph = function(data, selector){
 
 var errorLoading = function(selector){
     var pai = $(selector).closest("[data-graph]")[0];
-    $(pai).html("<div class='error-div'> <p  class='error-text'>Não Foi Carregar Gráfico</p></div>");
+    $(pai).addClass("not-loaded");
 }
 
 var data = {};
@@ -91,8 +91,10 @@ var data = {};
 $.ajax({
     type: 'GET',
     dataType: 'json',
-    url: "data/ds-genero-cd-gener.json",
+    url: "data/ds-genero-cd-genero.json",
     data: data
 }).done(function(data){
     drawStackedGraph(treatData(data), "#genero svg")
+    var pai = $("#genero svg").closest("[data-graph]")[0];
+    $(pai).removeClass("not-loaded");
 }).fail(errorLoading("#genero svg"));
