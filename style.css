@@ -35,3 +35,10 @@
     background-color: #2B3A67;
 }
 /*['#2B3A67', '#E84855']*/
+.error-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
