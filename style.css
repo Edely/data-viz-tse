@@ -26,14 +26,21 @@
 .canvas-subtitle-text{
     margin-bottom: 0;
 }
-
+#genero-eleitorado .canvas-subtitle-reference.mulheres,
 #genero .canvas-subtitle-reference.mulheres{
     background-color: #E84855;
 }
 
+#genero-eleitorado .canvas-subtitle-reference.homens,
 #genero .canvas-subtitle-reference.homens{
     background-color: #2B3A67;
 }
+
+#genero-eleitorado .canvas-subtitle-reference.nao-informado,
+#genero .canvas-subtitle-reference.nao-informado{
+    background-color: #222;
+}
+
 /*['#2B3A67', '#E84855']*/
 .error-div{
     display: none;

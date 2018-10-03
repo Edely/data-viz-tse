@@ -6,9 +6,9 @@ var treatData = function(rawData){
     var naoInformado = rawData["NÃO INFORMADO"] ? rawData["NÃO INFORMADO"] : 0;
     
     var total = feminino + masculino;
-    var jTotal = [{ graph: "Homens vs Mulheres" , fem: feminino, mas: masculino }];
+    var jTotal = [{ graph: "Homens vs Mulheres" , fem: feminino, mas: masculino, nao: naoInformado }];
     
-    var treatedData=['mas','fem'].map(function(key,i){
+    var treatedData=['mas','fem', 'nao'].map(function(key,i){
         return jTotal.map(function(d,j){
             return {x: d['graph'], y: d[key] };
         })
@@ -28,7 +28,7 @@ var drawStackedGraph = function(data, selector){
     var y = d3.scale.linear()
             .rangeRound([height, 0]);
 
-    var color = d3.scale.ordinal().range(['#2B3A67', '#E84855']);
+    var color = d3.scale.ordinal().range(['#2B3A67', '#E84855', "#222"]);
 
     var xAxis = d3.svg.axis()
             .scale(x)
