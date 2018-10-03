@@ -88,6 +88,7 @@ var errorLoading = function(selector){
 
 var data = {};
 
+//genero total
 $.ajax({
     type: 'GET',
     dataType: 'json',
@@ -95,6 +96,6 @@ $.ajax({
     data: data
 }).done(function(data){
     drawStackedGraph(treatData(data), "#genero svg")
-    var pai = $("#genero svg").closest("[data-graph]")[0];
-    $(pai).removeClass("not-loaded");
+    var parent = $("#genero svg").closest("[data-graph]")[0];
+    $(parent).removeClass("not-loaded");
 }).fail(errorLoading("#genero svg"));
