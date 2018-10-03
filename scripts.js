@@ -1,18 +1,20 @@
-var treatData = function(rawData){
-    //var data = {"MASCULINO": {"4": 0, "2": 824}, "FEMININO": {"4": 372, "2": 0}};    
+var treatData = function(rawData, typeData){
 
-    var feminino = rawData["FEMININO"];
-    var masculino = rawData["MASCULINO"];
-    var naoInformado = rawData["NÃO INFORMADO"] ? rawData["NÃO INFORMADO"] : 0;
-    
-    var total = feminino + masculino;
-    var jTotal = [{ graph: "Homens vs Mulheres" , fem: feminino, mas: masculino, nao: naoInformado }];
-    
-    var treatedData=['mas','fem', 'nao'].map(function(key,i){
-        return jTotal.map(function(d,j){
-            return {x: d['graph'], y: d[key] };
+    if(typeData == "gender"){
+        var feminino = rawData["FEMININO"];
+        var masculino = rawData["MASCULINO"];
+        var naoInformado = rawData["NÃO INFORMADO"] ? rawData["NÃO INFORMADO"] : 0;  
+        var total = feminino + masculino;
+        var jTotal = [{ graph: "Homens vs Mulheres" , fem: feminino, mas: masculino, nao: naoInformado }];
+        
+        var treatedData=['mas','fem', 'nao'].map(function(key,i){
+            return jTotal.map(function(d,j){
+                return {x: d['graph'], y: d[key] };
+            })
         })
-    })
+    }
+
+    
 
     return(treatedData);
 }
@@ -97,7 +99,7 @@ $.ajax({
     url: "data/ba-ds-genero.json",
     data: data
 }).done(function(data){
-    drawStackedGraph(treatData(data), "#genero svg")
+    drawStackedGraph(treatData(data, "gender"), "#genero svg")
     var parent = $("#genero svg").closest("[data-graph]")[0];
     $(parent).removeClass("not-loaded");
 }).fail(errorLoading("#genero svg"));
@@ -112,7 +114,7 @@ $.ajax({
     data: data
 }).done(function(data){
     console.log(data);
-    drawStackedGraph(treatData(data), "#genero-eleitorado svg")
+    drawStackedGraph(treatData(data, "gender"), "#genero-eleitorado svg")
     var parent = $("#genero-eleitorado svg").closest("[data-graph]")[0];
     $(parent).removeClass("not-loaded");
 }).fail(errorLoading("#genero-eleitorado svg"));
