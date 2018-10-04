@@ -71,6 +71,9 @@ var drawStackedGraph = function(data, selector, colorTheme){
     if(colorTheme == "escolaridade"){
         var colorRange = ["#D32F2F", "#F44336", "#FFCDD2", "#FF5252", "#212121", "#757575", "#BDBDBD"];
     }
+    if(colorTheme == "etnia"){
+        var colorRange = ["#D32F2F", "#F44336", "#FFCDD2", "#FF5252", "#212121", "#757575", "#BDBDBD"];
+    }
     
     
     var color = d3.scale.ordinal().range(colorRange);
